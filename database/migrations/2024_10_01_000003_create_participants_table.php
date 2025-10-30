@@ -9,14 +9,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('participants', function (Blueprint $table) {
-            $table->increments('participant_id');
+            $table->id('participant_id');
             $table->string('full_name', 150);
             $table->string('email', 100);
             $table->string('phone', 15)->nullable();
             $table->string('major', 50)->nullable();
             $table->unsignedInteger('team_id');
             $table->boolean('is_leader')->default(false);
-            $table->dateTime('registration_date')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('registration_date');
             $table->timestamps();
 
             $table->foreign('team_id')->references('team_id')->on('teams')->onDelete('cascade');
